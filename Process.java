@@ -22,9 +22,12 @@ class Process {
  // if necessary
     @Override 
     public String toString() {
-        return "Process ID: " + id + "\nArrival Time: " + arrivalTime + 
-               "\nBurst Time: " + burstTime + "\nCompletion Time: " + completionTime + 
-               "\nTurnaround Time: " + turnaroundTime + "\nWaiting Time: " + waitingTime;
+        return "Process ID: " + id + 
+        	   "\nArrival Time: " + arrivalTime + 
+               "\nBurst Time: " + burstTime + 
+               "\nCompletion Time: " + completionTime + 
+               "\nTurnaround Time: " + turnaroundTime + 
+               "\nWaiting Time: " + waitingTime;
     }
 }
 

@@ -7,6 +7,7 @@ class Process {
     int completionTime; 
     int waitingTime;    
     int turnaroundTime; 
+    boolean completed;
 
     public Process(int id, int arrivalTime, int burstTime) {
         this.id = id;

@@ -203,24 +203,24 @@ public class PreemptiveSJF {
         System.out.println("Enter no of process:");
         int n = sc.nextInt();
         
-        int[] pid = new int[n];    // Process IDs
-        int[] at = new int[n];     // Arrival Times
-        int[] bt = new int[n];     // Burst Times
-        int[] ct = new int[n];     // Completion Times
-        int[] ta = new int[n];     // Turnaround Times
-        int[] wt = new int[n];     // Waiting Times
-        int[] f = new int[n];      // Finish Status
-        int[] rt = new int[n];     // Remaining Times
+        int[] processID = new int[n];    // Process IDs
+        int[] arrivalTime = new int[n];     // Arrival Times
+        int[] burstTims = new int[n];     // Burst Times
+        int[] completionTime = new int[n];     // Completion Times
+        int[] turnaroundTime = new int[n];     // Turnaround Times
+        int[] waitingTime = new int[n];     // Waiting Times
+        int[] finishStatus = new int[n];      // Finish Status
+        int[] remainingTime = new int[n];     // Remaining Times
         int[] switchCount = new int[n]; // Count of context switches per process
         
         // Input process data
         for(int i = 0; i < n; i++) {
             System.out.println("Enter process " + (i+1) + " arrival time:");
-            at[i] = sc.nextInt();
+            arrivalTime[i] = sc.nextInt();
             System.out.println("Enter process " + (i+1) + " burst time:");
-            bt[i] = sc.nextInt();
-            pid[i] = i+1;
-            rt[i] = bt[i];
+            burstTims[i] = sc.nextInt();
+            processID[i] = i+1;
+            remainingTime[i] = burstTims[i];
             switchCount[i] = 0;
         }
 
@@ -240,8 +240,8 @@ public class PreemptiveSJF {
             check = false;
             
             for (int j = 0; j < n; j++) {
-                if ((at[j] <= t) && (f[j] == 0) && (rt[j] < minm)) {
-                    minm = rt[j];
+                if ((arrivalTime[j] <= t) && (finishStatus[j] == 0) && (remainingTime[j] < minm)) {
+                    minm = remainingTime[j];
                     shortest = j;
                     check = true;
                 }
@@ -268,18 +268,18 @@ public class PreemptiveSJF {
             }
 
             // Execute process for one time unit
-            rt[shortest]--;
+            remainingTime[shortest]--;
             t++;
 
             // If process completes
-            if (rt[shortest] == 0) {
+            if (remainingTime[shortest] == 0) {
                 complete++;
-                ct[shortest] = t;
-                ta[shortest] = ct[shortest] - at[shortest];
-                wt[shortest] = ta[shortest] - bt[shortest] - switchCount[shortest];
-                if (wt[shortest] < 0) wt[shortest] = 0;
-                f[shortest] = 1;
-                currentProcess = -1; // Process finished
+                completionTime[shortest] = t;
+                turnaroundTime[shortest] = completionTime[shortest] - arrivalTime[shortest];
+                waitingTime[shortest] = turnaroundTime[shortest] - burstTims[shortest] - switchCount[shortest];
+                if (waitingTime[shortest] < 0) waitingTime[shortest] = 0;
+                finishStatus[shortest] = 1;
+                currentProcess = shortest; // Process finished 
             }
         }
 
@@ -287,10 +287,10 @@ public class PreemptiveSJF {
         System.out.println("\nProcess Details:");
         System.out.println("PID  Arrival  Burst  Complete  Turnaround  Waiting");
         for (int i = 0; i < n; i++) {
-            avgwt += wt[i];
-            avgta += ta[i];
+            avgwt += waitingTime[i];
+            avgta += turnaroundTime[i];
             System.out.printf("%2d %8d %7d %9d %11d %9d\n", 
-                pid[i], at[i], bt[i], ct[i], ta[i], wt[i]);
+            processID[i], arrivalTime[i], burstTims[i], completionTime[i], turnaroundTime[i], waitingTime[i]);
         }
 
         System.out.printf("\nAverage Turnaround Time = %.2f\n", (float)(avgta/n));

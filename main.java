@@ -1,4 +1,4 @@
-import java.util.Scanner;
+/* import java.util.Scanner;
 
 class main{
     public static int Time=0;
@@ -24,5 +24,28 @@ class main{
         for(int i ;Time<totaltime;Time++){
            SJF.sjf(p,Time);
         }
+    }
+}*/
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter number of processes:");
+        int n = sc.nextInt();
+        List<Process> processList = new ArrayList<>();
+
+        for (int i = 0; i < n; i++) {
+            System.out.println("Enter Arrival Time for P" + (i + 1) + ":");
+            int arrivalTime = sc.nextInt();
+            System.out.println("Enter Burst Time for P" + (i + 1) + ":");
+            int burstTime = sc.nextInt();
+            processList.add(new Process(i + 1, arrivalTime, burstTime));
+        }
+        
+        Scheduler scheduler = new Scheduler(processList);
+        scheduler.runSimulation();
+        scheduler.printResults();
+        
+        sc.close();
     }
 }

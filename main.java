@@ -1,6 +1,6 @@
-/* import java.util.Scanner;
+import java.util.Scanner;
 
-class main{
+/*class main{
     public static int Time=0;
 
     public static void main(String[] args){

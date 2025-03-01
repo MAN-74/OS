@@ -8,6 +8,7 @@ class Process {
     int waitingTime;    
     int turnaroundTime; 
     boolean completed;
+    int switchCount;
 
     public Process(int id, int arrivalTime, int burstTime) {
         this.id = id;
@@ -17,6 +18,7 @@ class Process {
         this.completionTime = 0;
         this.waitingTime = 0;
         this.turnaroundTime = 0;
+        this.switchCount = 0;
     }
 
  // if necessary

@@ -1,4 +1,23 @@
 class Process {
+    int id, arrivalTime, burstTime, remainingTime, completionTime, waitingTime, turnaroundTime;
+    int switchCount = 0;
+
+    public Process(int id, int arrivalTime, int burstTime) {
+        this.id = id;
+        this.arrivalTime = arrivalTime;
+        this.burstTime = burstTime;
+        this.remainingTime = burstTime;
+    }
+}
+
+
+
+
+
+
+
+
+/*class Process {
     int id;             
     int arrivalTime;    
     int burstTime;      
@@ -30,5 +49,5 @@ class Process {
                "\nTurnaround Time: " + turnaroundTime + 
                "\nWaiting Time: " + waitingTime;
     }
-}
+}*/
 

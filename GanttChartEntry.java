@@ -1,4 +1,13 @@
-import java.util.Scanner;import java.util.Scanner;
+class GanttChartEntry {
+    int processId, startTime, endTime;
+    public GanttChartEntry(int processId, int startTime, int endTime) {
+        this.processId = processId;
+        this.startTime = startTime;
+        this.endTime = endTime;
+    }
+}
+
+/*import java.util.Scanner;import java.util.Scanner;
 public class SJF {
 
         static int complete = 0, t = 0;
@@ -84,5 +93,5 @@ public class SJF {
         
     }
     
-}
+}*/
 

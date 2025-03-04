@@ -1,4 +1,4 @@
-package os_Process;
+package lastmod;
 
 import java.util.*;
 
@@ -98,16 +98,6 @@ public class SJF {
 
     public void printing(List<Process> processes) {
         float avgWT = 0, avgTAT = 0;
-
-        // Print results
-        System.out.println("\nPerformance Metrics");
-        System.out.println("PID  Arrival  Burst  Complete  Turnaround  Waiting");
-        for (Process p : processes) {
-            avgWT += p.waitingTime;
-            avgTAT += p.turnaroundTime;
-            System.out.printf("%2d %8d %7d %9d %11d %9d\n", 
-                p.id, p.arrivalTime, p.burstTime, p.completionTime, p.turnaroundTime, p.waitingTime);
-        }
 
         System.out.printf("\nAverage Turnaround Time: %.2f\n", avgTAT / processes.size());
         System.out.printf("Average Waiting Time: %.2f\n", avgWT / processes.size());

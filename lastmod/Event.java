@@ -1,7 +1,7 @@
-package os_Process;
+package lastmod;
 
 public class Event {
-    private String type;  // Arrival, Start, Termination, Completion, etc.
+    private String type;  // Arrival, Start, Termination, etc.
     private int time;     // The time at which the event occurs
     private Process process;
     private int PID;

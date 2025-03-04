@@ -1,7 +1,8 @@
 import java.util.*;
 class Scheduler {
+
     PriorityQueue<Event> eventQueue = new PriorityQueue<>();
-    PriorityQueue<Process> readyQueue = new PriorityQueue<>(Comparator.comparingInt(p -> p.remainingTime));
+    PriorityQueue<Process> readyQueue = new PriorityQueue<>();
     List<Process> processList;
     List<GanttChartEntry> ganttChart = new ArrayList<>();
     int currentTime = 0, totalExecutionTime = 0;
@@ -43,7 +44,7 @@ class Scheduler {
             runningProcess = readyQueue.poll();
             int executionTime = runningProcess.remainingTime;
             int completionTime = currentTime + executionTime;
-            eventQueue.add(new Event(completionTime, "COMPLETION", runningProcess));
+            eventQueue.add(new Event(completionTime, "COMPLETION", runningProcess));// it not chacking the reaady qeue for smaller burst time !!
             ganttChart.add(new GanttChartEntry(runningProcess.id, currentTime, completionTime));
             runningProcess.remainingTime = 0;
             totalExecutionTime += executionTime;

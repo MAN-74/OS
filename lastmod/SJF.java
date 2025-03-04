@@ -19,6 +19,7 @@ public class SJF {
         
         for (Process p : processes) {
             totalBurstTime += p.burstTime; // Sum total burst time
+            eventQueue.add(new Event( "Arrival", p.arrivalTime, p));// process Arrival event
         }
 
         System.out.println("\nScheduling Algorithm: Shortest remaining time first");
@@ -61,6 +62,7 @@ public class SJF {
             if (!prevProcess.equals(currentProcessID)) {
                 if (!prevProcess.isEmpty() && !prevProcess.equals("Idle")) {
                 	System.out.printf("%-10s %-5s%n", (startTime + "-" + t), prevProcess);
+                    eventQueue.add(new Event( "Start", t, processes.get(shortest)));//  procsses Starting event
                 }
                 startTime = t;
                 if (!prevProcess.equals("") && !prevProcess.equals("Idle")) {
@@ -78,6 +80,7 @@ public class SJF {
 
             // If process completes
             if (processes.get(shortest).remainingTime == 0) {
+                eventQueue.add(new Event( "TERMINATION", t, processes.get(shortest)));// process Termnation event
                 complete++;
                 processes.get(shortest).completionTime = t;
                 processes.get(shortest).turnaroundTime = t - processes.get(shortest).arrivalTime;
@@ -98,6 +101,11 @@ public class SJF {
 
     public void printing(List<Process> processes) {
         float avgWT = 0, avgTAT = 0;
+
+        for (Process p:processes) {
+            avgWT += p.waitingTime;
+            avgTAT += p.turnaroundTime;
+        }
 
         System.out.printf("\nAverage Turnaround Time: %.2f\n", avgTAT / processes.size());
         System.out.printf("Average Waiting Time: %.2f\n", avgWT / processes.size());

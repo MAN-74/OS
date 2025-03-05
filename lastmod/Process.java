@@ -23,7 +23,6 @@ class Process {
         this.completed = false;
     }
 
- // if necessary
     @Override 
     public String toString() {
     	 return "-------------------------\n" +

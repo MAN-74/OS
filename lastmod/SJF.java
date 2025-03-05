@@ -60,6 +60,11 @@ for (String interval : ganttChart) {
 }
 System.out.println();
 
+System.out.printf("\nAverage Turnaround Time: %.2f\n", avgTAT / processes.size());
+System.out.printf("Average Waiting Time: %.2f\n", avgWT / processes.size());
+
+float cpuUtilization = ((float) totalBurstTime / totalCompletionTime) * 100;
+System.out.printf("CPU Utilization: %.2f%%\n", cpuUtilization);
 
     public void sjf(List<Process> processes, int n) {
         processList = processes;

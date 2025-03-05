@@ -10,7 +10,6 @@ class main {
         int n = sc.nextInt();
         List<Process> processes = new ArrayList<>();
 
-        // Input process data
         for (int i = 0; i < n; i++) {
             System.out.println("Enter process " + (i + 1) + " arrival time:");
             int arrival = sc.nextInt();
@@ -19,20 +18,16 @@ class main {
             processes.add(new Process(i + 1, arrival, burst)); // ID is i+1
         }
      
-        // Display Summary
         System.out.println("\nNumber of processes = " + n);
         System.out.println("Arrival times and burst times as follows:\n");
         for (Process p : processes) {
             System.out.println("P" + p.id + ": Arrival time = " + p.arrivalTime + ", Burst time = " + p.burstTime + " ms");
         }
 
-
-        // Create SJF scheduler instance and run
         SJF ss = new SJF();
         ss.sjf(processes, n);
         ss.printing(processes);
         
-        sc.close(); // Close scanner to avoid resource leaks
-
+        sc.close(); 
     }
 }

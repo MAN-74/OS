@@ -49,6 +49,16 @@ while (!eventQueue.isEmpty()) {
         // Handle process completion
     }
 }
+List<String> ganttChart = new ArrayList<>();
+// Add process intervals to the gantt chart
+ganttChart.add("P" + (shortest + 1));
+
+// After all processes are completed, print the Gantt chart
+System.out.println("Gantt Chart:");
+for (String interval : ganttChart) {
+    System.out.print(interval + " ");
+}
+System.out.println();
 
 
     public void sjf(List<Process> processes, int n) {

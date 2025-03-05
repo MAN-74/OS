@@ -1,7 +1,6 @@
 package lastmod;
 
 import java.util.*;
-import java.util.PriorityQueue;
 
 public class SJF {
     List<Process> processList;
@@ -9,42 +8,9 @@ public class SJF {
     int totalCompletionTime = 0;
     int contextSwitchTime = 1;
     int totalExecutionTime = 0; 
-    int shortest = -1;
-    int minm = Integer.MAX_VALUE;
-    boolean check = false;
-    int earliestArrival = Integer.MAX_VALUE;
     
-    for (int j = 0; j < n; j++) {
-        Process pro = processes.get(j);
-        if ((pro.arrivalTime <= t) && (finishStatus[j] == 0)) {
-            if (pro.remainingTime < minm || (pro.remainingTime == minm && pro.arrivalTime < earliestArrival)) {
-                minm = pro.remainingTime;
-                shortest = j;
-                earliestArrival = pro.arrivalTime;
-                check = true;
-            }
-        }
-    }
 
-    PriorityQueue<Event> eventQueue = new PriorityQueue<>(Comparator.comparingInt(e -> e.time));
-
-    for (Process p : processes) {
-        eventQueue.add(new Event(p.arrivalTime, "Arrival", p));
-    }
-
-    List<String> ganttChart = new ArrayList<>();
-    ganttChart.add("P" + (shortest + 1));
-    
-    System.out.println("Gantt Chart:");
-    for (String interval : ganttChart) {
-        System.out.print(interval + " ");
-    }
-    System.out.println();
-    System.out.printf("\nAverage Turnaround Time: %.2f\n", avgTAT / processes.size());
-    System.out.printf("Average Waiting Time: %.2f\n", avgWT / processes.size());
-
-    float cpuUtilization = ((float) totalBurstTime / totalCompletionTime) * 100;
-    System.out.printf("CPU Utilization: %.2f%%\n", cpuUtilization);
+ 
 
     public void sjf(List<Process> processes, int n) {
         processList = processes;

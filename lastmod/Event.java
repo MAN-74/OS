@@ -5,6 +5,15 @@ public class Event {
     private int time;     // The time at which the event occurs
     private Process process;
     private int PID;
+    class Event {
+
+
+    public Event(int time, String type, Process process) {
+        this.time = time;
+        this.type = type;
+        this.process = process;
+    }
+
 
     public Event(String type, int time, Process process) {
         this.type = type;

@@ -28,6 +28,28 @@ for (int j = 0; j < n; j++) {
     }
 }
 
+import java.util.PriorityQueue;
+
+PriorityQueue<Event> eventQueue = new PriorityQueue<>(Comparator.comparingInt(e -> e.time));
+
+// Add process arrival events to the queue
+for (Process p : processes) {
+    eventQueue.add(new Event(p.arrivalTime, "Arrival", p));
+}
+
+// Now process events in order of time
+while (!eventQueue.isEmpty()) {
+    Event currentEvent = eventQueue.poll();
+
+    if (currentEvent.type.equals("Arrival")) {
+        // Handle process arrival
+    } else if (currentEvent.type.equals("Start")) {
+        // Handle process start
+    } else if (currentEvent.type.equals("Completion")) {
+        // Handle process completion
+    }
+}
+
 
     public void sjf(List<Process> processes, int n) {
         processList = processes;

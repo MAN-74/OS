@@ -1,12 +1,10 @@
 package lastmod;
 
 public class Event {
-    private String type;  // Arrival, Start, Termination, etc.
-    private int time;     // The time at which the event occurs
+    private String type; 
+    private int time;    
     private Process process;
     private int PID;
-    class Event {
-
 
     public Event(int time, String type, Process process) {
         this.time = time;
@@ -14,15 +12,13 @@ public class Event {
         this.process = process;
     }
 
-
     public Event(String type, int time, Process process) {
         this.type = type;
         this.time = time;
         this.process = process;
-        this.PID = process.id; // Fixing PID assignment
+        this.PID = process.id; 
     }
 
-    // Getters
     public String getType() {
         return type;
     }

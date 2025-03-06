@@ -3,14 +3,13 @@ package lastmod;
 import java.util.*;
 
 public class SJF {
+    PriorityQueue<Event> eventQueue = new PriorityQueue<>();
     List<Process> processList;
     int totalBurstTime = 0;
     int totalCompletionTime = 0;
     int contextSwitchTime = 1;
     int totalExecutionTime = 0; 
     
-
- 
 
     public void sjf(List<Process> processes, int n) {
         processList = processes;
@@ -21,6 +20,8 @@ public class SJF {
         
         for (Process p : processes) {
             totalBurstTime += p.burstTime;
+                eventQueue.add(new Event(p.arrivalTime, "ARRIVAL", p));
+            
         }
 
         System.out.println("\nScheduling Algorithm: Shortest remaining time first");
@@ -60,6 +61,7 @@ public class SJF {
 
             if (!prevProcess.equals(currentProcessID)) {
                 if (!prevProcess.isEmpty() && !prevProcess.equals("Idle")) {
+                    eventQueue.add(new Event(t, "Strating", processes.get(shortest)));
                 	System.out.printf("%-10s %-5s%n", (startTime + "-" + t), prevProcess);
                 }
                 startTime = t;
@@ -76,6 +78,7 @@ public class SJF {
             totalExecutionTime++;
 
             if (processes.get(shortest).remainingTime == 0) {
+                eventQueue.add(new Event(t, "COMPLETION", processes.get(shortest)));
                 complete++;
                 processes.get(shortest).completionTime = t;
                 processes.get(shortest).turnaroundTime = t - processes.get(shortest).arrivalTime;
@@ -101,7 +104,6 @@ public class SJF {
             avgTAT += p.turnaroundTime;
         }
         
-        System.out.println("Performance Metrics");
         System.out.printf("\nAverage Turnaround Time: %.2f\n", avgTAT / processes.size());
         System.out.printf("Average Waiting Time: %.2f\n", avgWT / processes.size());
         float cpuUtilization = ((float) totalBurstTime / totalCompletionTime) * 100;

@@ -1,4 +1,4 @@
-package os_ass2;
+package ASS_2;
 
 import java.util.*;
 

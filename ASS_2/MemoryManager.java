@@ -1,4 +1,4 @@
-package os_ass2;
+package ASS_2;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +27,9 @@ public class MemoryManager {
 
         System.out.println("Enter allocation strategy (1 for first-fit, 2 for best-fit, 3 for worst-fit): ");
         allocationStrategy = scanner.nextInt();
+        System.out.println("Enter the process ID and size of process: ");
+        String pID=scanner.next();
+        int pSize=scanner.nextInt();
 
         System.out.println("Memory blocks are created…");
         printMemoryStatus();

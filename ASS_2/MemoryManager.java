@@ -7,6 +7,52 @@ import java.util.Scanner;
 public class MemoryManager {
     static List<Block> memoryBlocks = new ArrayList<>();
     static int allocationStrategy; // 1: First-Fit, 2: Best-Fit, 3: Worst-Fit
+    
+    public static void main (String[]args){
+        Allocation allocation=new Allocation();
+        initializeMemory();
+        Scanner scanner = new Scanner(System.in);
+        System.err.println("1) Allocates memory blocks\r\n" + //
+                        "2) De-allocates memory blocks\r\n" + //
+                        "3) Print report about the current state of memory and internal Fragmentation\r\n" + //
+                        "4) Exit");
+        int choice=scanner.nextInt();
+        
+        
+        switch (choice){
+            case 1:
+            System.out.println("Enter the process ID and size of process: ");
+                String pID=scanner.next();
+                int pSize=scanner.nextInt();
+            switch (allocationStrategy) {
+                case 1:
+                allocation.FirstFit(pID,pSize,memoryBlocks);
+
+                    break;
+                case 2:
+                allocation.BestFit(pID,pSize,memoryBlocks);
+                break;
+                case 3:
+                allocation.WorstFit(pID,pSize,memoryBlocks);
+
+                break;
+                default:
+                    break;
+            }
+            
+
+            break;
+
+            case 2: 
+            break;
+            case 3:
+            case 4:
+
+        }
+        
+    }  
+
+
 
     public static void initializeMemory() {
         Scanner scanner = new Scanner(System.in);
@@ -27,12 +73,12 @@ public class MemoryManager {
 
         System.out.println("Enter allocation strategy (1 for first-fit, 2 for best-fit, 3 for worst-fit): ");
         allocationStrategy = scanner.nextInt();
-        System.out.println("Enter the process ID and size of process: ");
-        String pID=scanner.next();
-        int pSize=scanner.nextInt();
-
         System.out.println("Memory blocks are created…");
         printMemoryStatus();
+
+       
+
+        
     }
 
     public static void printMemoryStatus() {
@@ -45,9 +91,7 @@ public class MemoryManager {
         System.out.println("==========================================================");
     }
 
-    public static void main(String[] args) {
-        initializeMemory();  // Call this once at the beginning
-    }
+    
 }
 
 

@@ -1,22 +1,32 @@
 package ASS_2;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Allocation {
 
-    public void FirstFit(String pID,int pSize,ArrayList<Block> memoryBlocks){ //Allocate the first available block that is large enough.
+    public void FirstFit(String pID,int pSize,List<Block> memoryBlocks){ //Allocate the first available block that is large enough.
+        int firstFit=-1;
         for(Block block : memoryBlocks){
-           if(block.isAllocated){
+           if(!block.isAllocated){
                 if(block.blockSize>=pSize){
-                    block.isAllocated=true;
-                    block.processID=pID;
+                    firstFit=memoryBlocks.indexOf(block);
                     break;
                 }
            }
         }
+        Block firstFitedBlock=memoryBlocks.get(firstFit);
+        firstFitedBlock.isAllocated=true;
+        firstFitedBlock.processID=pID;
+        int internalFragmentation=internalFragmentation();
+        firstFitedBlock.internalFragmentation=internalFragmentation;
+
+        System.out.println(firstFitedBlock.processID+//
+        " Allocated at address "+firstFitedBlock.startAddress+//
+        ", and the internal fragmentation is "+firstFitedBlock.internalFragmentation);
 
     }
-    public void BestFit(String pID,int pSize,ArrayList<Block> memoryBlocks){  // Allocate the smallest block that is large enough.
+    public void BestFit(String pID,int pSize,List<Block> memoryBlocks){  // Allocate the smallest block that is large enough.
         int bestFit=-1;
         for(Block block : memoryBlocks){
             if(block.blockSize>=pSize){
@@ -31,9 +41,16 @@ public class Allocation {
         Block bestFitedBlock=memoryBlocks.get(bestFit);
         bestFitedBlock.isAllocated=true;
         bestFitedBlock.processID=pID;
+        int internalFragmentation=internalFragmentation();
+        bestFitedBlock.internalFragmentation=internalFragmentation;
+
+        System.out.println(bestFitedBlock.processID+//
+        " Allocated at address "+bestFitedBlock.startAddress+//
+        ", and the internal fragmentation is "+bestFitedBlock.internalFragmentation);
+        
 
     }
-    public void WorstFit(String pID,int pSize,ArrayList<Block> memoryBlocks){
+    public void WorstFit(String pID,int pSize,List<Block> memoryBlocks){
         int worstFit=-1;
         for(Block block : memoryBlocks){
             if(block.blockSize>=pSize){
@@ -48,6 +65,15 @@ public class Allocation {
         Block worstFittedBlock=memoryBlocks.get(worstFit);
         worstFittedBlock.isAllocated=true;
         worstFittedBlock.processID=pID;
+        int internalFragmentation=internalFragmentation();
+        worstFittedBlock.internalFragmentation=internalFragmentation;
+
+        System.out.println(worstFittedBlock.processID+//
+        " Allocated at address "+worstFittedBlock.startAddress+//
+        ", and the internal fragmentation is "+worstFittedBlock.internalFragmentation);
+    }
+    public int internalFragmentation(){//calculate internalFragmentation
+        return 0;
     }
     
 }

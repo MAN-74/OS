@@ -29,13 +29,28 @@ public class MemoryManager {
                 allocation.FirstFit(pID,pSize,memoryBlocks);
 
                     break;
-                case 2:
-                allocation.BestFit(pID,pSize,memoryBlocks);
-                break;
-                case 3:
-                allocation.WorstFit(pID,pSize,memoryBlocks);
-
-                break;
+               case 2:
+                    System.out.print("Enter the process ID to deallocate: ");
+                    String processToRemove = scanner.next();
+                    boolean found = false;
+                    for (Block block : memoryBlocks) {
+                        if (block.isAllocated && block.processID.equals(processToRemove)) {
+                            block.isAllocated = false;
+                            block.processID = "Null";
+                            block.internalFragmentation = 0;
+                            found = true;
+                            System.out.println("Process " + processToRemove + " has been deallocated.");
+                            break;
+                        }
+                    }
+                    if (!found) {
+                        System.out.println("Process ID not found or already free.");
+                    }
+                    break;
+              case 3:
+                    printMemoryStatus();
+                    break;
+                    
                 default:
                     break;
             }

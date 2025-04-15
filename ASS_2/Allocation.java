@@ -18,7 +18,7 @@ public class Allocation {
         Block firstFitedBlock=memoryBlocks.get(firstFit);
         firstFitedBlock.isAllocated=true;
         firstFitedBlock.processID=pID;
-        int internalFragmentation=internalFragmentation();
+        int internalFragmentation = internalFragmentation(firstFitedBlock.blockSize, pSize);
         firstFitedBlock.internalFragmentation=internalFragmentation;
 
         System.out.println(firstFitedBlock.processID+//
@@ -41,7 +41,7 @@ public class Allocation {
         Block bestFitedBlock=memoryBlocks.get(bestFit);
         bestFitedBlock.isAllocated=true;
         bestFitedBlock.processID=pID;
-        int internalFragmentation=internalFragmentation();
+        int internalFragmentation = internalFragmentation(bestFitedBlock.blockSize, pSize);
         bestFitedBlock.internalFragmentation=internalFragmentation;
 
         System.out.println(bestFitedBlock.processID+//
@@ -65,7 +65,7 @@ public class Allocation {
         Block worstFittedBlock=memoryBlocks.get(worstFit);
         worstFittedBlock.isAllocated=true;
         worstFittedBlock.processID=pID;
-        int internalFragmentation=internalFragmentation();
+        int internalFragmentation = internalFragmentation(worstFittedBlock.blockSize, pSize);
         worstFittedBlock.internalFragmentation=internalFragmentation;
 
         System.out.println(worstFittedBlock.processID+//

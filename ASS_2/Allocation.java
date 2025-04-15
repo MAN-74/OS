@@ -72,8 +72,8 @@ public class Allocation {
         " Allocated at address "+worstFittedBlock.startAddress+//
         ", and the internal fragmentation is "+worstFittedBlock.internalFragmentation);
     }
-    public int internalFragmentation(){//calculate internalFragmentation
-        return 0;
+
+    public int internalFragmentation(int blockSize, int processSize){
+        return blockSize - processSize;
     }
-    
 }

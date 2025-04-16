@@ -1,5 +1,6 @@
+package ass2;
 
-package OS_Assignment2;
+
 
 
 import java.util.ArrayList;
@@ -95,3 +96,4 @@ public class Allocation {
         return blockSize - processSize;
     }
 }
+

@@ -1,5 +1,6 @@
+package ass2;
 
-package OS_Assignment2;
+
 
 import java.util.*;
 
@@ -18,12 +19,12 @@ public class Main {
         
         boolean running = true;
         while (running) {
-            System.out.println("============================================");
+            System.out.println("===========================================================================");
             System.out.println("1) Allocates memory blocks");
             System.out.println("2) De-allocates memory blocks");
             System.out.println("3) Print report about the current state of memory and internal Fragmentation");
             System.out.println("4) Exit");
-            System.out.println("============================================");
+            System.out.println("===========================================================================");
             
             System.out.print("Enter your choice: ");
             int choice = scanner.nextInt();
@@ -113,22 +114,22 @@ public class Main {
 
  public static void printMemoryStatus(boolean finalReport) {
     if (!finalReport) {
-       
-        System.out.println("==========================================================");
+        System.out.println("Memory blocks: ");
+        System.out.println("===========================================================================");
         System.out.println("Block#   Size    Start-End   Status");
-        System.out.println("==========================================================");
+        System.out.println("===========================================================================");
         for (int i = 0; i < memoryBlocks.size(); i++) {
             Block block = memoryBlocks.get(i);
             System.out.printf("Block%-3d  %-6d  %4d-%-4d   %-10s%n",
                     i, block.blockSize, block.startAddress, block.endAddress,
                     block.isAllocated ? "allocated" : "free");
         }
-        System.out.println("==========================================================");
+        System.out.println("===========================================================================");
     } else {
        
-        System.out.println("==========================================================");
+        System.out.println("===========================================================================");
         System.out.println("Block#   Size    Start-End   Status      ProcessID    InternalFragmentation");
-        System.out.println("==========================================================");
+        System.out.println("===========================================================================");
         for (int i = 0; i < memoryBlocks.size(); i++) {
             Block block = memoryBlocks.get(i);
             System.out.printf("Block%-3d  %-6d  %4d-%-4d   %-10s    %-10s    %-2d%n",

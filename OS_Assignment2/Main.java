@@ -1,15 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package ospp2;
 
-/**
- *
- * @author ASUS
- */
+package OS_Assignment2;
+
 import java.util.*;
-
 
 public class Main {
     
@@ -38,18 +30,18 @@ public class Main {
             
             switch (choice) {
                  case 1:
-                      allocateMemory();
-    break;
+                        allocateMemory();
+                    break;
                   
                 case 2:
-                    deallocateMemory();
+                        deallocateMemory();
                     break;
                 case 3:
-                    printMemoryStatus(true);
+                        printMemoryStatus(true);
                     break;
                 case 4:
-                    running = false;
-                    System.out.println("Exiting...");
+                        running = false;
+                        System.out.println("Exiting...");
                     break;
                 default:
                     System.out.println("Invalid choice! Try again.");
